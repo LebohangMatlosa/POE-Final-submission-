@@ -18,7 +18,7 @@ namespace TASK_1_POE_Proper
             if(MELEEWEAPONS.LongSword == typeOfWeapon)
             {
                 base.symbol = 'D';
-                base.DAMAGE = 300;
+                
             }
         }
     }
