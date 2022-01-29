@@ -5,74 +5,43 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TASK_1_POE_Proper
-{
-    public class Tile 
-
-    {
-        private int damage;
-
-        public int DAMAGE
-        {
-            get { return damage; }
-            set { damage = value; }
-        }
-
-
-        private Hero playercharacter;
-
-        public Hero PLAYERCHARACTER
-        {
-            get { return playercharacter; }
-            set { playercharacter = value; }
-        }
-
-    }
-
-    public enum TileType
-    {
-        Character,
-        Hero,
-        Enemy,
-        Gold,
-        Weapon,
-        Empty,
-        Barrier,
-        attack,
-
-
-    }
-    public enum MovementDirection
-    {
-        noMovement,
-        Up,
-        Down,
-        Left,
-        Right,
-    }
+{   
     abstract class tile
     {
-        
+
         protected int x;
         protected int y;
-        protected TileType typeOfTile;
-        protected Tile(int posX, int posY)
+        protected char symbols; 
+        public enum TileType
         {
-            posX = x;
-            posY = y;
-            
+            Character,
+            Hero,
+            Enemy,
+            Gold,
+            Weapon,
+            Empty,
+            Barrier,
+            attack,
+
+
         }
 
 
-        public int X
+        public int X()
         {
-            get { return x; }
-            set { x = value; }
+            return x;   
         }
 
-        public int Y
+        public tile(int K, int L, TileType Type, char symbol)
         {
-            get { return y; }
-            set { y= value; }
+            x = K;
+            y = L;
+            symbol = symbols;
+            Enumtype = Type;
+        }
+        public int Y()
+        {
+            return y;
         }
         private int enemies;
         
@@ -81,20 +50,12 @@ namespace TASK_1_POE_Proper
             get { return enemies; }
             set { enemies = value; }
         }
-        private bool typeoftile;
-
-        public bool TYPEOFTILE
+        protected TileType Enumtype;
+        public TileType enumtype
         {
-            get { return typeoftile; }
-            set { typeoftile = value; }
+            get { return enumtype; }
+            set { Enumtype = value; }
         }
-
-
-            
-        public void emptyTile()
-        {
-
-        }
-
+        
     }
 }

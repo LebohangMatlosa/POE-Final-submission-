@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TASK_1_POE_Proper
 {
-    public abstract class Weapon_Class : Tile
+    abstract class Weapon_Class : Item
     {
         private int Range;
 
@@ -39,103 +39,16 @@ namespace TASK_1_POE_Proper
             get { return cost; }
             set { cost = value; }
         }
+
+        public char Symbol { get; }
+
         private int weaponType;
 
-        protected Weapon_Class(int damage, int dAMAGE, int durability, int dURABILITY, int cost, int cOST, int weaponType, int wEAPONTYPE, string longSword, string Dagger)
+        protected Weapon_Class(char symbolConstruct, int K = -1, int L = -1, TileType Type = TileType.Weapon)
+            :base(K, L, Type, symbolConstruct)
         {
-            this.damage = damage;
-            DAMAGE = dAMAGE;
-            this.durability = durability;
-            DURABILITY = dURABILITY;
-            this.cost = cost;
-            COST = cOST;
-            this.weaponType = weaponType;
-            WEAPONTYPE = wEAPONTYPE;
+            this.Symbol = symbolConstruct;
             
         }
-
-        protected Weapon_Class( int LongSword, int Dagger, int range, int rANGE, int damage, int dAMAGE, int durability, int dURABILITY, int cost, int cOST, int weaponType, int wEAPONTYPE)
-        {
-            Range = range;
-            RANGE = rANGE;
-            this.damage = damage;
-            DAMAGE = dAMAGE;
-            this.durability = durability;
-            DURABILITY = dURABILITY;
-            this.cost = cost;
-            COST = cOST;
-            this.weaponType = weaponType;
-            WEAPONTYPE = wEAPONTYPE;
-
-            Random weapon = new Random();
-            weapon.Next(Dagger, LongSword);
-            while( Dagger )
-            {
-                damage = 3;
-                cost = 3;
-                durability = 10;
-            }
-            else
-            {
-                damage = 4;
-                cost = 5;         
-                durability = 6;
-            }
-        }
-
-        public int WEAPONTYPE
-        {
-            get { return weaponType; }
-            set { weaponType = value; }
-        }
-        public class MeleeWeapon
-        {
-           public enum Weapons
-            {
-                LongSword,
-                Dagger
-            }
-            
-            public override int Range()
-            {
-                return base.damage = 1;
-            }
-           
-
-            public static void Weapon(int Y, int x)
-            {
-                MeleeWeapon longSword = new MeleeWeapon();
-                MeleeWeapon Dagger = new MeleeWeapon(); 
-
-                longSword.Range = 1;
-                Dagger.Range = 1;
-
-                Random r = new Random();
-                int x = longSword;
-                
-                int Y = Dagger;
-                r.Next(x, Y);
-
-            }
-
-            public override bool Equals(object obj)
-            {
-                return base.Equals(obj);
-            }
-
-            public override int Range()
-            {
-                return base.Range();
-            }
-
-            public override string ToString()
-            {
-                return base.ToString();
-            }
-        }
-        
-
-
-
     }
 }
