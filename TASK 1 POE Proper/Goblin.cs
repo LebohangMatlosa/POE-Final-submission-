@@ -13,36 +13,36 @@ namespace TASK_1_POE_Proper
 
         }
 
-        public override MovementEnum ReturnMove(MovementEnum GoblinMove)
+        public override Movement returnMove(Movement GoblinMove)
         {
             switch (GoblinMove)
             {
-                case MovementEnum.Up:
+                case Movement.up:
                     {
                         x--;
                         return GoblinMove;
                     }
 
-                case MovementEnum.Down:
+                case Movement.down:
                     {
                         x++;
                         return GoblinMove;
                     }
 
-                case MovementEnum.Left:
+                case Movement.left:
                     {
                         y--;
                         return GoblinMove;
                     }
 
-                case MovementEnum.Right:
+                case Movement.right:
                     {
                         y++;
                         return GoblinMove;
                     }
             }
 
-            return (MovementEnum)GoblinMove;
+            return (Movement)GoblinMove;
         }
 
         public override String ToString()

@@ -8,31 +8,32 @@ namespace TASK_1_POE_Proper
 {
     class Map 
     {
-        public static Tile[,] map;
-        public Hero playerCharacter;
+        
+        private int MinHeight;
+        private int MaxHeight;
+        public Hero characterPlayer;
         public Enemy[] enemies;
         public GOLD gold;
         public MeleeWeaponClass meleeWeapon;
-        private int mapHeight;
-        private int mapWidth;
-        private int MinHeight;
-        private int MaxHeight;
+        public static Tile[,] map;
         private int MinWidth;
         private int MaxWidth;
+        private int mapHeight;
+        private int mapWidth;
         public int borderHeight;
         public int borderWidth;
         private int AmtEnemy;
         private static Random numbers = new Random();
         private static Random rand = new Random();
-        private static int enemyAmount = rand.Next(1, 9);
+        private static int amountOfEnemies = rand.Next(1, 9);
         private static Random goblinAmount = new Random();
-        private static int goblinAmt = goblinAmount.Next(1, enemyAmount);
+        private static int goblinAmt = goblinAmount.Next(1, amountOfEnemies);
         private static Random mageAmount = new Random();
-        private static int mageAmt = mageAmount.Next(1, enemyAmount);
+        private static int mageAmt = mageAmount.Next(1, amountOfEnemies);
         private static Random meleeWepaonAmount = new Random();
         private static int meleeWeaponAmt = meleeWepaonAmount.Next(1, 5);
         private static Random goldAmount = new Random();
-        private static int goldennAmt = goblinAmount.Next(1, 5);
+        private static int goldAmt = goblinAmount.Next(1, 5);
         public static int goldCollected = 0;
         public static bool canMove = true;
         public static Hero player;

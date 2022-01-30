@@ -10,31 +10,29 @@ namespace TASK_1_POE_Proper
     {
         protected Random r = new Random();
 
-        private int enemyDamage;
-        int damageTaken = 2;
+        private int EnemiesDamage;
+        int hploss = 2;
 
+        public Enemy(int x, int y, TileType Type, char Symbol, int EnemyDamage, int Hp, int MaxHP) : base(x, y, Type, Symbol)
+        {
+            damage = EnemyDamage;
+            hp = Hp;
+            maxHp = MaxHP;
+
+        }
         public int EnemyDamage
         {
-            get { return enemyDamage; }
-            set { enemyDamage = value; }
+            get { return EnemiesDamage; }
+            set { EnemiesDamage = value; }
         }
-
-        public Enemy(int x, int y, TileType ConstructType, char Symbol, int ConstructEnemyDamage, int ConstructHp, int ConstructMaxHP) : base(x, y, ConstructType, Symbol)
-        {
-            damage = ConstructEnemyDamage;
-            hp = ConstructHp;
-            maxhp = ConstructMaxHP;
-
-        }
-
         public void TakeDamage()
         {
-            Hp -= damageTaken;
+            hp -= hploss;
         }
 
         public override String ToString()
         {
-            return "EnemyClassName" + " at [" + x.ToString() + y.ToString() + "]" + Damage;
+            return "EnemyName" + " at [" + x.ToString() + y.ToString() + "]" + Damage;
         }
     }
 }

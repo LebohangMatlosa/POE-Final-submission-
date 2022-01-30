@@ -32,7 +32,7 @@ namespace TASK_1_POE_Proper
             return x;   
         }
 
-        public tile(int K, int L, TileType Type, char symbol)
+        public Tile(int K, int L, TileType Type, char symbol)
         {
             x = K;
             y = L;

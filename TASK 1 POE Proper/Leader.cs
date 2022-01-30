@@ -6,54 +6,60 @@ using System.Threading.Tasks;
 
 namespace TASK_1_POE_Proper
 {
-    class Leader
+    abstract class Leader : Enemy
     {
-        private int LeaderTargets;
+        [NonSerialized] public Random r;
+        private Tile LeaderEnemies;
 
-        public Leader(int LeaderHp, int LeaderDamage, int X, int Y, int leaderTargets, int leadertargets )
+        public Tile leaderEnemies
         {
-            LeaderTargets = leaderTargets;
-            this.leadertargets = leadertargets;
+            get { return leaderEnemies; }
+            set { leaderEnemies = value; }
+        }
+        public Leader(int i, int j, TileType Type = TileType.Enemy, char Symbol = 'L', int enemeyDamage = 2, int HP = 20) : base(i, j, Type, 'L', 2, 20, 20)
+        {
 
-            LeaderHp = 20;
-            LeaderDamage = 2;
         }
 
-        public int leadertargets
+        public virtual Movement Move(Movement leadersMovement)
         {
-            get { return LeaderTargets; }
-            set { LeaderTargets = value; }
-        }
+            switch (leadersMovement)
+            {
+                case Movement.up:
+                    {
+                        x--;
+                        return leadersMovement;
+                    }
 
-        public override bool LeaderMovement()
-        {
-            return base.Equals();
-        }
+                case Movement.down:
+                    {
+                        x++;
+                        return leadersMovement;
+                    }
 
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
+                case Movement.left:
+                    {
+                        y--;
+                        return leadersMovement;
+                    }
 
-        public override string ReturnMove(Movement)
-        {
-            if(MovementDirection = MovementDirection.Up)
-            {
-                return base.Movement = 1; 
-            }
-            if(MovementDirection = MovementDirection.Down)
-            {
-                return base.Movement = 2;              
-            }
-            if (MovementDirection = MovementDirection.Left)
-            {
-                return base.Movement = 3;
-            }
-            if (MovementDirection = MovementDirection.Right)
-            {
-                return base.Movement = 4;
+                case Movement.right:
+                    {
+                        y++;
+                        return leadersMovement;
+                    }
             }
 
+            return (Movement)leadersMovement;
         }
+
+        public override String ToString()
+        {
+            return "Leader" + " at [" + x.ToString() + y.ToString() + "]" + Damage;
+        }
+
+
+
+
     }
 }

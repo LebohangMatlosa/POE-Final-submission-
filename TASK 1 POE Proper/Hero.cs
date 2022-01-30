@@ -3,82 +3,84 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TASK_1_POE_Proper
 {
-    class Hero : Character
+     class Hero : Character
     {
         public Hero(int x, int y, TileType ConstructType, char Symbol, int ConstructHp, int ConstructMaxHP) : base(x, y, ConstructType, 'H')
         {
             damage = 2;
             hp = ConstructHp;
-            maxhp = ConstructMaxHP;
+            maxHp = ConstructMaxHP;
         }
+        
 
-        public override MovementEnum ReturnMove(MovementEnum move)
+        public override Movement returnMove(Movement move)
         {
             switch (move)
             {
-                case MovementEnum.Up:
+                case Movement.up:
                     {
                         x--;
                         return move;
                     }
 
-                case MovementEnum.Down:
-                    {
-                        x++;
-                        return move;
-                    }
-
-                case MovementEnum.Left:
+                case Movement.down:
                     {
                         y--;
                         return move;
                     }
 
-                case MovementEnum.Right:
+                case Movement.left:
+                    {
+                        x++;
+                        return move;
+                    }
+
+                case Movement.right:
                     {
                         y++;
                         return move;
                     }
             }
 
-            return Character.MovementEnum.NoMovement;
+            return Character.Movement.stationary;
         }
 
-        public AttackEnum ReturnAttack(AttackEnum attack)
+        public Attacking ReturnAttack(Attacking attack)
         {
             switch (attack)
             {
-                case AttackEnum.Up:
+                case Attacking.up:
                     {
                         if (Map.map[x - 1, y] is Enemy)
                         {
-                            MessageBox.Show("Hit!");
+                            System.Windows.Forms.MessageBox.Show("Hit!");
                         }
                         return attack;
                     }
 
-                case AttackEnum.Down:
+                case Attacking.down:
                     {
                         if (Map.map[x + 1, y] is Enemy)
                         {
-                            MessageBox.Show("Hit!");
+                            MessageBox.Show("Hit");
                         }
                         return attack;
                     }
 
-                case AttackEnum.Left:
+                case Attacking.left:
                     {
                         if (Map.map[x, y - 1] is Enemy)
                         {
-                            MessageBox.Show("Hit!");
+                            MessageBox.Show("Hit"); 
                         }
                         return attack;
                     }
 
-                case AttackEnum.Right:
+                case Attacking.right:
                     {
                         if (Map.map[x, y + 1] is Enemy)
                         {
@@ -88,7 +90,7 @@ namespace TASK_1_POE_Proper
                     }
             }
 
-            return Character.AttackEnum.NoAttack;
+            return Character.Attacking.stationary;
         }
         public override String ToString()
         {

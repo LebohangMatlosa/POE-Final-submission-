@@ -9,16 +9,16 @@ namespace TASK_1_POE_Proper
     class GOLD : Item
     {
         private Random r = new Random();
-        private int goldAmt;
+        private int amoutOfGold;
 
-        public int GoldDrop()
+        public int Gold()
         {
-            return goldAmt;
+            return amoutOfGold;
         }
 
-        public GOLD(int x, int y) : base(x, y, TileType.Gold, '@')
+        public GOLD(int x, int y) : base(x, y, TileType.Gold, '+')
         {
-
+            
         }
     }
 }
