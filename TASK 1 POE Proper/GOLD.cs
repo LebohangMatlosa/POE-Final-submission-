@@ -6,23 +6,19 @@ using System.Threading.Tasks;
 
 namespace TASK_1_POE_Proper
 {
-    class GOLD : Items
+    class GOLD : Item
     {
-        private int gold;
+        private Random r = new Random();
+        private int goldAmt;
 
-        public int GOLDDROP
+        public int GoldDrop()
         {
-            get { return gold; }
-            set { gold = value; }
+            return goldAmt;
         }
 
-        private Random RANDOM_GOLD_GENERATOR;
-
-        public GOLD(int goldX, int goldY, TileType goldTile, int goldAmount):base(goldX,goldY,goldTile, goldAmount)
+        public GOLD(int x, int y) : base(x, y, TileType.Gold, '@')
         {
-            goldX = X;
-            goldY = Y;
-            goldAmount = RANDOM_GOLD_GENERATOR.Next(1,6);
+
         }
     }
 }

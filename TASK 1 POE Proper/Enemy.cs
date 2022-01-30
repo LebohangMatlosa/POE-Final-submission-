@@ -9,32 +9,32 @@ namespace TASK_1_POE_Proper
     abstract class Enemy : Character
     {
         protected Random r = new Random();
-        private string enemyType;
 
+        private int enemyDamage;
+        int damageTaken = 2;
 
-        protected Enemy(int EnemyX, int EnemyY,TileType enemy ,int enemyDamage, int enemyhp, int enemy_maxHp, string typeOfEnemy) : base(EnemyX, EnemyY,enemy, typeOfEnemy, enemyDamage, enemyhp, enemy_maxHp)
+        public int EnemyDamage
         {
-            EnemyX = X;
-            EnemyY = Y;
-            damage = DAMAGE;
-            hp = HP;
+            get { return enemyDamage; }
+            set { enemyDamage = value; }
+        }
 
+        public Enemy(int x, int y, TileType ConstructType, char Symbol, int ConstructEnemyDamage, int ConstructHp, int ConstructMaxHP) : base(x, y, ConstructType, Symbol)
+        {
+            damage = ConstructEnemyDamage;
+            hp = ConstructHp;
+            maxhp = ConstructMaxHP;
 
         }
 
-      
-
-        public string EnemyType
+        public void TakeDamage()
         {
-            get { return enemyType; }
-            set { enemyType = value; }
+            Hp -= damageTaken;
         }
 
-
-        override public String ToString()
+        public override String ToString()
         {
-            return enemyType + "at" + "["+ X +","+ Y+"]"+"(Amount "+ DAMAGE + " )" ;
+            return "EnemyClassName" + " at [" + x.ToString() + y.ToString() + "]" + Damage;
         }
-       
     }
 }

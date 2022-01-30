@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TASK_1_POE_Proper
 {   
-    abstract class tile
+    abstract class Tile
     {
 
         protected int x;

@@ -8,19 +8,19 @@
     "net5.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Leboh\\.nuget\\packages\\": {}
+    "C:\\Users\\yound\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Leboh\\OneDrive\\Documents\\GitHub\\GADE6121-POE-Task-1\\TASK 1 POE Proper\\TASK 1 POE Proper.csproj",
+      "projectUniqueName": "C:\\Users\\yound\\Documents\\GitHub\\POE-Final-submission-\\TASK 1 POE Proper\\TASK 1 POE Proper.csproj",
       "projectName": "TASK 1 POE Proper",
-      "projectPath": "C:\\Users\\Leboh\\OneDrive\\Documents\\GitHub\\GADE6121-POE-Task-1\\TASK 1 POE Proper\\TASK 1 POE Proper.csproj",
-      "packagesPath": "C:\\Users\\Leboh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Leboh\\OneDrive\\Documents\\GitHub\\GADE6121-POE-Task-1\\TASK 1 POE Proper\\obj\\",
+      "projectPath": "C:\\Users\\yound\\Documents\\GitHub\\POE-Final-submission-\\TASK 1 POE Proper\\TASK 1 POE Proper.csproj",
+      "packagesPath": "C:\\Users\\yound\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\yound\\Documents\\GitHub\\POE-Final-submission-\\TASK 1 POE Proper\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Leboh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\yound\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -63,7 +63,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
       }
     }
   }

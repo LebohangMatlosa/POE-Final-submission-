@@ -6,166 +6,334 @@ using System.Threading.Tasks;
 
 namespace TASK_1_POE_Proper
 {
-    class Map : Tile
+    class Map 
     {
-        char[,] gameMap = new char[8,14];
-        string[] enemy = new string[4];
-        string[] item = new string[5];
-        string goblin;
-        string mage;
+        public static Tile[,] map;
+        public Hero playerCharacter;
+        public Enemy[] enemies;
+        public GOLD gold;
+        public MeleeWeaponClass meleeWeapon;
+        private int mapHeight;
+        private int mapWidth;
+        private int MinHeight;
+        private int MaxHeight;
+        private int MinWidth;
+        private int MaxWidth;
+        public int borderHeight;
+        public int borderWidth;
+        private int AmtEnemy;
+        private static Random numbers = new Random();
+        private static Random rand = new Random();
+        private static int enemyAmount = rand.Next(1, 9);
+        private static Random goblinAmount = new Random();
+        private static int goblinAmt = goblinAmount.Next(1, enemyAmount);
+        private static Random mageAmount = new Random();
+        private static int mageAmt = mageAmount.Next(1, enemyAmount);
+        private static Random meleeWepaonAmount = new Random();
+        private static int meleeWeaponAmt = meleeWepaonAmount.Next(1, 5);
+        private static Random goldAmount = new Random();
+        private static int goldennAmt = goblinAmount.Next(1, 5);
+        public static int goldCollected = 0;
+        public static bool canMove = true;
+        public static Hero player;
+        Enemy enemy;
 
-        int mapWidth = 14;
-        int mapHeight = 8;
+        ]
 
-        Random r = new Random();
-
-        protected Random Random_Number_Generator = new Random();
-        private Tile [,] mapcontainer;
-
-        public Tile [,] MAPCONTAINER
+        public Map(int minHeight, int maxHeight, int minWidth, int maxWidth, int amtEnemy)
         {
-            get { return mapcontainer; }
-            set { mapcontainer = value; }
+            MinHeight = minHeight;
+            MaxHeight = maxHeight;
+            MinWidth = minWidth;
+            MaxWidth = maxWidth;
+            AmtEnemy = amtEnemy;
+
+            mapHeight = numbers.Next(minHeight, maxHeight);
+            mapWidth = numbers.Next(minWidth, maxWidth);
+
+            borderHeight = mapHeight + 2;
+            borderWidth = mapWidth + 2;
+
+            map = new Tile[borderWidth, borderHeight];
+
+            enemies = new Enemy[AmtEnemy];
+
+            MakeMap();
         }
 
-
-        private int mapwidth;
-
-        public int MAPWIDTH
+        private Tile Create(Tile.TileType type, Type EnemyType = null)
         {
-            get { return mapwidth; }
-            set { mapwidth = value; }
-        }
-        private int mapheight;
+            int positionX = numbers.Next(1, mapWidth);
+            int positionY = numbers.Next(1, mapHeight);
 
-        public int MAPHEIGHT
-        {
-            get { return mapheight; }
-            set { mapheight = value; }
-        }
-
-
-        public Map(int widthMax,  int widthMin, int heightMIn, int heightMax, int enemyAmount, int goblin, int mage, int goldOnMap )
-        {
-            string[,] mapSize = new string[8, 14];
-            heightMax = 10;
-            heightMIn = 5;
-            widthMax = 14;
-            widthMin = 7;
-            MAPHEIGHT = Random_Number_Generator.Next(heightMIn, heightMax);
-
-            MAPWIDTH = Random_Number_Generator.Next(widthMin, widthMax);
-
-            MAPCONTAINER = new Tile[mapWidth, mapHeight];
-            enemies = new List<Enemy>();
-            mage = 4;
-            goblin = 5;
-
-
-            enemies = Random_Number_Generator.Next(goblin, mage);
-
-
-            
-
-             
-
-            UpdateVision();
-
-        }
-        
-        private Tile Create(int tileEnumType)
-        {
-           for(int x = 0; x < 15; x++)
+            if (positionX > mapHeight || positionY > mapWidth)
             {
-                for(int y = 0; y < 9; y++)
-                {
-                    gameMap[x, y].ToString(); 
-                }
+                return Create(type, EnemyType);
             }
-        }
-        void GenerateInitialMap(int gobAmount)
-        {
-            for(int y = 0; y < MAPWIDTH; y++)
-            {
-                for(int x=0; x < MAMPHEIGHT; x++)
-                {
-                    if(x == 0 || x == MAPWIDTH -1 || y ==0 || y = mapHeight - 1)
-                    {
-                        Create(TileType.Barrier, x, y);
-                    }
-                    else
-                    {
-                        Create(TileType.Empty, x, y); 
-                    }
-                }
-            }
-            Create(TileType.Hero);
-            {
-                for(int e =0; e < gobAmount; e++)
-                {
-                    Create(TileType.Enemy);   
-                }
-            }
-            
-            {
-                for(int w = 0; w < 10; w++)
-                {
-                    for(int t =0; t <10; t++)
-                    {
-                        Create(TileType.Gold, w, t );
-                        int gold = Random_Number_Generator.Next(1, 5);
 
+            if (type == Tile.TileType.Enemy)
+            {
+                return (Enemy)Activator.CreateInstance(EnemyType, positionX, positionY, type, EnemyType == typeof(Goblin) ? 'G' : 'M', 1, 10);
+            }
+            else if (type == Tile.TileType.Hero)
+            {
+                return new Hero(positionX, positionY, type, 'H', 20, 20);
+            }
+            else if (type == Tile.TileType.Gold)
+            {
+                return new GOLD(positionX, positionY);
+            }
+            /*else if (type == Tile.TileType.Weapon)
+            {
+                return new MeleeWeapon(positionX, positionY)
+            }*/
+
+            return new Hero(positionX, positionY, Tile.TileType.Hero, 'H', 20, 20);
+
+        }
+
+        private void MakeMap()
+        {
+            for (int x = 0; x < borderWidth; x++)
+            {
+                for (int y = 0; y < borderHeight; y++)
+                {
+                    map[x, y] = new emptyTile(x, y, Tile.TileType.Empty);
+
+                    if (x == 0 || x == borderWidth - 1 || y == 0 || y == borderHeight - 1)
+                    {
+                        map[x, y] = new Obstacle(x, y, Tile.TileType.Obstacle);
                     }
                 }
             }
-        }
-        public override string ToString()
-        {
-            string MapString = " ";
-            for(int y = 0; y < MAPWIDTH; y++)
-            {
-                for(int x = 0; x < MAPHEIGHT; x++)
-                {
-                    MapString += MAPCONTAINER[x, y];
-                }
-                MapString += "\n";    
-            }
-            return MapString;
-        }
-        public void Create(TileType typeOfTile, int X = 0, int Y = 0)
-        {
-            switch (typeOfTile)
-            {
-                case TileType.Barrier:
-                    Obstacle NewBarrier = new Obstacle(X, Y, "#", typeOfTile);
-                    MAPCONTAINER[X, Y] = NewBarrier;
-                    break;
-                case TileType.Empty:
-                    emptyTile NewEmptyTile = new emptyTile(X, Y, " ", typeOfTile);
-                    MAPCONTAINER[X, Y] = NewEmptyTile;
-                    break;
-                case TileType.Hero:
-                    int HeroX = Random_Number_Generator.Next(0, MAPWIDTH);
-                    int HeroY = Random_Number_Generator.Next(0, MAPHEIGHT);
-                    
-                    while(MAPCONTAINER[HeroX, HeroY].TYPEOFTILE ! = TileType.Empty)
-                    {
-                         HeroX = Random_Number_Generator.Next(0, MAPWIDTH);
-                         HeroY = Random_Number_Generator.Next(0, MAPHEIGHT);
 
+            player = (Hero)Create(Tile.TileType.Hero);
+            map[player.GetX(), player.GetY()] = player;
+
+            for (int i = 0; i < AmtEnemy; i++)
+            {
+                enemies[i] = (Mage)Create(Tile.TileType.Enemy, typeof(Mage));
+                map[enemies[i].GetX(), enemies[i].GetY()] = enemies[i];
+            }
+
+            for (int i = 0; i < AmtEnemy; i++)
+            {
+                enemies[i] = (Goblin)Create(Tile.TileType.Enemy, typeof(Goblin));
+                map[enemies[i].GetX(), enemies[i].GetY()] = enemies[i];
+            }
+
+
+            for (int i = 0; i < 1; i++)
+            {
+                enemies[i] = (Leader)Create(Tile.TileType.Enemy, typeof(Leader));
+                map[enemies[i].GetX(), enemies[i].GetY()] = enemies[i];
+            }
+
+            for (int i = 0; i < goldennAmt + 1; i++)
+            {
+                gold = (Gold)Create(Tile.TileType.Gold);
+                map[gold.GetX(), gold.GetY()] = gold;
+            }
+
+            /*for (int i = 0; i < meleeWeaponAmt + 1; i++)
+            {
+                meleeWeapon = (MeleeWeapon)Create(Tile.TileType.Weapon);
+                map[meleeWeapon.GetX(), meleeWeapon.GetY()] = meleeWeapon;
+            }*/
+
+        }
+
+        public void MoveHero(Character.MovementEnum move)
+        {
+            int x = player.GetX();
+            int y = player.GetY();
+
+            switch (move)
+            {
+                case Character.MovementEnum.Up:
+                    {
+                        x--;
+                        break;
                     }
 
-                    Hero NewHero = new Hero(HeroX, HeroY, "H", 100, 100, 10);
-                    PLAYERCHARACTER = NewHero; 
-                    MAPCONTAINER[HeroX, HeroY] = NewHero
-             
+                case Character.MovementEnum.Down:
+                    {
+                        x++;
+                        break;
+                    }
+
+                case Character.MovementEnum.Left:
+                    {
+                        y--;
+                        break;
+                    }
+
+                case Character.MovementEnum.Right:
+                    {
+                        y++;
+                        break;
+                    }
             }
-        static void UpdateVision()
-        {
-            foreach (Enemy E in 
+
+            if (map[x, y] is Goblin || map[x, y] is Obstacle || map[x, y] is Mage || map[x, y] is Leader)
+            {
+                canMove = false;
+                return;
+            }
+
+            map[player.GetX(), player.GetY()] = new emptyTile(player.GetX(), player.GetY(), Tile.TileType.Empty);
+            player.ReturnMove(move);
+
+            if (map[player.GetX(), player.GetY()] is Gold)
+            {
+                goldCollected = goldCollected + 1;
+            }
+
+            map[player.GetX(), player.GetY()] = player;
         }
-        private List<Enemy> enemies;
-        public List<Enemy> Enemies;
+
+        public void HeroAttack(Character.AttackEnum attack)
+        {
+            int x = player.GetX();
+            int y = player.GetY();
+
+            switch (attack)
+            {
+                case Hero.AttackEnum.Up:
+                    {
+                        Tile tile = map[x - 1, y];
+                        if (tile is Enemy)
+                        {
+                            Enemy enemy = (Enemy)tile;
+                            enemy.TakeDamage();
+                            enemy.IsDead();
+
+                            if (enemy.IsDead())
+                            {
+                                map[x - 1, y] = new emptyTile(x - 1, y, Tile.TileType.Empty);
+                            }
+                        }
+                        break;
+                    }
+
+                case Hero.AttackEnum.Down:
+                    {
+                        if (map[x + 1, y] is Enemy)
+                        {
+                            Tile tile = map[x + 1, y];
+                            if (tile is Enemy)
+                            {
+                                Enemy enemy = (Enemy)tile;
+                                enemy.TakeDamage();
+                                enemy.IsDead();
+
+                                if (enemy.IsDead())
+                                {
+                                    map[x + 1, y] = new emptyTile(x + 1, y, Tile.TileType.Empty);
+                                }
+                            }
+                        }
+                        break;
+                    }
+
+                case Hero.AttackEnum.Left:
+                    {
+                        if (map[x, y - 1] is Enemy)
+                        {
+                            Tile tile = map[x, y - 1];
+                            if (tile is Enemy)
+                            {
+                                Enemy enemy = (Enemy)tile;
+                                enemy.TakeDamage();
+                                enemy.IsDead();
+
+                                if (enemy.IsDead())
+                                {
+                                    map[x, y - 1] = new emptyTile(x, y - 1, Tile.TileType.Empty);
+                                }
+                            }
+                        }
+                        break;
+                    }
+
+                case Hero.AttackEnum.Right:
+                    {
+                        if (map[x, y + 1] is Enemy)
+                        {
+                            Tile tile = map[x, y + 1];
+                            if (tile is Enemy)
+                            {
+                                Enemy enemy = (Enemy)tile;
+                                enemy.TakeDamage();
+                                enemy.IsDead();
+
+                                if (enemy.IsDead())
+                                {
+                                    map[x, y + 1] = new emptyTile(x, y + 1, Tile.TileType.Empty);
+                                }
+                            }
+                        }
+                        break;
+                    }
+            }
+
+
+
+
+            // public void UpdateVision()  //Updates the vision array for each character 
+            //{
+
+            //}
+        }
+
+        public void MoveEnemy(Character.MovementEnum move)
+        {
+            for (int i = 0; i < AmtEnemy; i++)
+            {
+
+
+                int x = enemies[i].GetX();
+                int y = enemies[i].GetY();
+
+                switch (move)
+                {
+                    case Character.MovementEnum.Up:
+                        {
+                            x--;
+                            break;
+                        }
+
+                    case Character.MovementEnum.Down:
+                        {
+                            x++;
+                            break;
+                        }
+
+                    case Character.MovementEnum.Left:
+                        {
+                            y--;
+                            break;
+                        }
+
+                    case Character.MovementEnum.Right:
+                        {
+                            y++;
+                            break;
+                        }
+                }
+
+                if (map[x, y] is Goblin || map[x, y] is Obstacle || map[x, y] is Mage || enemies[i] is Mage)
+                {
+                    canMove = false;
+                    return;
+                }
+
+                map[enemies[i].GetX(), enemies[i].GetY()] = new emptyTile(enemies[i].GetX(), enemies[i].GetY(), Tile.TileType.Empty);
+                enemies[i].ReturnMove(move);
+
+                map[x, y] = enemies[i];
+            }
+        }
     }
       
 

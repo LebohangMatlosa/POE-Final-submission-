@@ -8,15 +8,46 @@ namespace TASK_1_POE_Proper
 {
     class Goblin : Enemy
     {
-        public Goblin(int posX, int posY, int damage, int hp, int maxHp, string type) : base(posX, posY, damage, hp, maxHp, type)
+        public Goblin(int i, int j, TileType ConstructType, char Symbol, int ConstructEnemyDamage, int ConstructHp) : base(i, j, ConstructType, 'G', 1, 10, 10)
         {
-            hp = 10;
-            damage = 1;
+
         }
 
-        override ReturnMove()
+        public override MovementEnum ReturnMove(MovementEnum GoblinMove)
         {
-            r = r.Next();
+            switch (GoblinMove)
+            {
+                case MovementEnum.Up:
+                    {
+                        x--;
+                        return GoblinMove;
+                    }
+
+                case MovementEnum.Down:
+                    {
+                        x++;
+                        return GoblinMove;
+                    }
+
+                case MovementEnum.Left:
+                    {
+                        y--;
+                        return GoblinMove;
+                    }
+
+                case MovementEnum.Right:
+                    {
+                        y++;
+                        return GoblinMove;
+                    }
+            }
+
+            return (MovementEnum)GoblinMove;
+        }
+
+        public override String ToString()
+        {
+            return "Goblin" + " at [" + x.ToString() + y.ToString() + "]" + Damage;
         }
     }
 }

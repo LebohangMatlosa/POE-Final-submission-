@@ -8,7 +8,7 @@ namespace TASK_1_POE_Proper
 {
     class emptyTile : Tile
     {
-        public emptyTile(int posX, int posY, TileType tileType) : base(posX, posY, tileType)
+        public emptyTile(int x, int y, TileType ConstructType) : base(x, y, ConstructType, '.')
         {
 
         }
