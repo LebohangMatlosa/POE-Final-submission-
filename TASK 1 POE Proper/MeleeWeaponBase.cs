@@ -3,6 +3,5 @@
     public class MeleeWeaponBase
     {
 
-        private static void Weapon()
     }
 }

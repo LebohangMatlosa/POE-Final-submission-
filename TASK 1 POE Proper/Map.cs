@@ -8,21 +8,28 @@ namespace TASK_1_POE_Proper
 {
     class Map 
     {
-        
-        private int MinHeight;
-        private int MaxHeight;
+        private int WidthMin;
+        private int WidthMax;
+        private int mapHeight;
+        private int mapWidth;
+        public int borderHeight;
+        public int borderWidth;
+        private int heightMax;
+        private int heightMin;
+        private int AmountOfEnemy;
+
+        public static int goldColleted = 0;
+        public static bool canMove = true;
+
+
         public Hero characterPlayer;
         public Enemy[] enemies;
         public GOLD gold;
         public MeleeWeaponClass meleeWeapon;
         public static Tile[,] map;
-        private int MinWidth;
-        private int MaxWidth;
-        private int mapHeight;
-        private int mapWidth;
-        public int borderHeight;
-        public int borderWidth;
-        private int AmtEnemy;
+
+        
+        
         private static Random numbers = new Random();
         private static Random rand = new Random();
         private static int amountOfEnemies = rand.Next(1, 9);
@@ -34,66 +41,62 @@ namespace TASK_1_POE_Proper
         private static int meleeWeaponAmt = meleeWepaonAmount.Next(1, 5);
         private static Random goldAmount = new Random();
         private static int goldAmt = goblinAmount.Next(1, 5);
-        public static int goldCollected = 0;
-        public static bool canMove = true;
+        
         public static Hero player;
         Enemy enemy;
 
-        ]
+        
 
-        public Map(int minHeight, int maxHeight, int minWidth, int maxWidth, int amtEnemy)
+        public Map(int widthMin, int widthMax, int minHeight, int maxHeight, int EnemiesAmount)
         {
-            MinHeight = minHeight;
-            MaxHeight = maxHeight;
-            MinWidth = minWidth;
-            MaxWidth = maxWidth;
-            AmtEnemy = amtEnemy;
-
-            mapHeight = numbers.Next(minHeight, maxHeight);
-            mapWidth = numbers.Next(minWidth, maxWidth);
+            AmountOfEnemy = EnemiesAmount;
+            heightMin = minHeight;
+            heightMax = maxHeight;
+            WidthMin = widthMin;
+            WidthMax = widthMax;
+            
 
             borderHeight = mapHeight + 2;
             borderWidth = mapWidth + 2;
 
+            mapHeight = numbers.Next(minHeight, maxHeight);
+            mapWidth = numbers.Next(widthMin, widthMax);
+
+            enemies = new Enemy[AmountOfEnemy];
             map = new Tile[borderWidth, borderHeight];
 
-            enemies = new Enemy[AmtEnemy];
-
-            MakeMap();
+            MapMaker();
         }
 
         private Tile Create(Tile.TileType type, Type EnemyType = null)
         {
-            int positionX = numbers.Next(1, mapWidth);
-            int positionY = numbers.Next(1, mapHeight);
+            int posX = numbers.Next(1, mapWidth);
+            int posY = numbers.Next(1, mapHeight);
 
-            if (positionX > mapHeight || positionY > mapWidth)
+            if (posX > mapHeight || posY > mapWidth)
             {
                 return Create(type, EnemyType);
             }
 
             if (type == Tile.TileType.Enemy)
             {
-                return (Enemy)Activator.CreateInstance(EnemyType, positionX, positionY, type, EnemyType == typeof(Goblin) ? 'G' : 'M', 1, 10);
+                return (Enemy)Activator.CreateInstance(EnemyType, posX, posY, type, EnemyType == typeof(Goblin) ? 'G' : 'M', 1, 10);
             }
             else if (type == Tile.TileType.Hero)
             {
-                return new Hero(positionX, positionY, type, 'H', 20, 20);
+                return new Hero(posX, posY, type, 'H', 20, 20);
             }
             else if (type == Tile.TileType.Gold)
             {
-                return new GOLD(positionX, positionY);
+                return new GOLD(posX, posY);
             }
-            /*else if (type == Tile.TileType.Weapon)
-            {
-                return new MeleeWeapon(positionX, positionY)
-            }*/
+            
 
-            return new Hero(positionX, positionY, Tile.TileType.Hero, 'H', 20, 20);
+            return new Hero(posX, posY, Tile.TileType.Hero, 'H', 20, 20);
 
         }
 
-        private void MakeMap()
+        private void MapMaker()
         {
             for (int x = 0; x < borderWidth; x++)
             {
@@ -109,31 +112,31 @@ namespace TASK_1_POE_Proper
             }
 
             player = (Hero)Create(Tile.TileType.Hero);
-            map[player.GetX(), player.GetY()] = player;
+            map[player.X(), player.Y()] = player;
 
-            for (int i = 0; i < AmtEnemy; i++)
+            for (int i = 0; i < AmountOfEnemy; i++)
             {
                 enemies[i] = (Mage)Create(Tile.TileType.Enemy, typeof(Mage));
-                map[enemies[i].GetX(), enemies[i].GetY()] = enemies[i];
+                map[enemies[i].X(), enemies[i].Y()] = enemies[i];
             }
 
-            for (int i = 0; i < AmtEnemy; i++)
+            for (int i = 0; i < AmountOfEnemy; i++)
             {
                 enemies[i] = (Goblin)Create(Tile.TileType.Enemy, typeof(Goblin));
-                map[enemies[i].GetX(), enemies[i].GetY()] = enemies[i];
+                map[enemies[i].X(), enemies[i].Y()] = enemies[i];
             }
 
 
             for (int i = 0; i < 1; i++)
             {
                 enemies[i] = (Leader)Create(Tile.TileType.Enemy, typeof(Leader));
-                map[enemies[i].GetX(), enemies[i].GetY()] = enemies[i];
+                map[enemies[i].X(), enemies[i].Y()] = enemies[i];
             }
 
             for (int i = 0; i < goldennAmt + 1; i++)
             {
-                gold = (Gold)Create(Tile.TileType.Gold);
-                map[gold.GetX(), gold.GetY()] = gold;
+                gold = (GOLD)Create(Tile.TileType.Gold);
+                map[gold.X(), gold.Y()] = gold;
             }
 
             /*for (int i = 0; i < meleeWeaponAmt + 1; i++)
@@ -144,32 +147,32 @@ namespace TASK_1_POE_Proper
 
         }
 
-        public void MoveHero(Character.MovementEnum move)
+        public void MoveHero(Character.Movement move)
         {
-            int x = player.GetX();
-            int y = player.GetY();
+            int x = player.X();
+            int y = player.Y();
 
             switch (move)
             {
-                case Character.MovementEnum.Up:
+                case Character.Movement.up:
                     {
                         x--;
                         break;
                     }
 
-                case Character.MovementEnum.Down:
+                case Character.Movement.down:
                     {
                         x++;
                         break;
                     }
 
-                case Character.MovementEnum.Left:
+                case Character.Movement.left:
                     {
                         y--;
                         break;
                     }
 
-                case Character.MovementEnum.Right:
+                case Character.Movement.right:
                     {
                         y++;
                         break;
@@ -182,25 +185,25 @@ namespace TASK_1_POE_Proper
                 return;
             }
 
-            map[player.GetX(), player.GetY()] = new emptyTile(player.GetX(), player.GetY(), Tile.TileType.Empty);
-            player.ReturnMove(move);
+            map[player.X(), player.Y()] = new emptyTile(player.X(), player.Y(), Tile.TileType.Empty);
+            player.returnMove(move);
 
-            if (map[player.GetX(), player.GetY()] is Gold)
+            if (map[player.X(), player.Y()] is GOLD)
             {
                 goldCollected = goldCollected + 1;
             }
 
-            map[player.GetX(), player.GetY()] = player;
+            map[player.X(), player.Y()] = player;
         }
 
-        public void HeroAttack(Character.AttackEnum attack)
+        public void HeroAttack(Character.Attacking attack)
         {
-            int x = player.GetX();
-            int y = player.GetY();
+            int x = player.X();
+            int y = player.Y();
 
             switch (attack)
             {
-                case Hero.AttackEnum.Up:
+                case Hero.Attacking.up:
                     {
                         Tile tile = map[x - 1, y];
                         if (tile is Enemy)
@@ -217,7 +220,7 @@ namespace TASK_1_POE_Proper
                         break;
                     }
 
-                case Hero.AttackEnum.Down:
+                case Hero.Attacking.down:
                     {
                         if (map[x + 1, y] is Enemy)
                         {
@@ -237,7 +240,7 @@ namespace TASK_1_POE_Proper
                         break;
                     }
 
-                case Hero.AttackEnum.Left:
+                case Hero.Attacking.left:
                     {
                         if (map[x, y - 1] is Enemy)
                         {
@@ -257,7 +260,7 @@ namespace TASK_1_POE_Proper
                         break;
                     }
 
-                case Hero.AttackEnum.Right:
+                case Hero.Attacking.right:
                     {
                         if (map[x, y + 1] is Enemy)
                         {
@@ -287,36 +290,36 @@ namespace TASK_1_POE_Proper
             //}
         }
 
-        public void MoveEnemy(Character.MovementEnum move)
+        public void MoveEnemy(Character.Movement move)
         {
-            for (int i = 0; i < AmtEnemy; i++)
+            for (int i = 0; i < AmountOfEnemy; i++)
             {
 
 
-                int x = enemies[i].GetX();
-                int y = enemies[i].GetY();
+                int x = enemies[i].X();
+                int y = enemies[i].Y();
 
                 switch (move)
                 {
-                    case Character.MovementEnum.Up:
+                    case Character.Movement.up:
                         {
                             x--;
                             break;
                         }
 
-                    case Character.MovementEnum.Down:
+                    case Character.Movement.down:
                         {
                             x++;
                             break;
                         }
 
-                    case Character.MovementEnum.Left:
+                    case Character.Movement.left:
                         {
                             y--;
                             break;
                         }
 
-                    case Character.MovementEnum.Right:
+                    case Character.Movement.right:
                         {
                             y++;
                             break;
@@ -329,8 +332,8 @@ namespace TASK_1_POE_Proper
                     return;
                 }
 
-                map[enemies[i].GetX(), enemies[i].GetY()] = new emptyTile(enemies[i].GetX(), enemies[i].GetY(), Tile.TileType.Empty);
-                enemies[i].ReturnMove(move);
+                map[enemies[i].X(), enemies[i].Y()] = new emptyTile(enemies[i].X(), enemies[i].Y(), Tile.TileType.Empty);
+                enemies[i].returnMove(move);
 
                 map[x, y] = enemies[i];
             }

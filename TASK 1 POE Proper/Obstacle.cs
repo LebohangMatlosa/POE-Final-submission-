@@ -8,7 +8,7 @@ namespace TASK_1_POE_Proper
 {
     class Obstacle : Tile
     {
-        public Obstacle(int posX , int posY , TileType tileType) : base(posX , posY , tileType)
+        public Obstacle(int posX , int posY , TileType tileType) : base(posX , posY , tileType, '!')
         {
             
         }

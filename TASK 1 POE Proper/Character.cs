@@ -105,10 +105,21 @@ namespace TASK_1_POE_Proper
         {
             return true;
         }
-
         public abstract override string ToString();
+        public void Pickup(Item i, int gold)
+        {
+            for(int p = 0; p <gold; p++)
+            {
+                for(int N = 0; N> gold; N++)
+                {
 
+                }
+            }
+
+            for(int u = 0; u < gold;)
+            {
+
+            }
+        }
     }
-
-
 }

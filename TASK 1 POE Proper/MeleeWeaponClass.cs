@@ -10,16 +10,30 @@ namespace TASK_1_POE_Proper
     {
         public enum MELEEWEAPONS
         {
-            LongSword, Dagger
+            LongBow, Rifle, BareHanded
         }
         
-        public MeleeWeaponClass(MELEEWEAPONS typeOfWeapon, int k, int l, TileType Type = TileType.Weapon)
+        public MeleeWeaponClass(MELEEWEAPONS typeOfWeapon, int k, int l, TileType Type = TileType.Weapon, char symbolConstruct = '*') : base(symbolConstruct, l, k, Type )
         {
-            if(MELEEWEAPONS.LongSword == typeOfWeapon)
+            if(MELEEWEAPONS.LongBow == typeOfWeapon)
             {
-                base.symbol = 'D';
-                
+                base.symbol = 'L';
+                base.DURABILITY = 4;
+                base.RANGE = 2;
+                base.DAMAGE = 4;
+                base.COST = 6;
             }
+            if (MELEEWEAPONS.Rifle == typeOfWeapon)
+            {
+                base.symbol = 'R';
+                base.DAMAGE = 5;
+                base.COST = 7;
+                base.RANGE = 3;
+                base.DURABILITY = 10;
+
+            }
+            base.x = k;
+            base.y = l;
         }
     }
 }
