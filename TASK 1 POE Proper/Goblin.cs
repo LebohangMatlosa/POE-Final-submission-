@@ -8,41 +8,41 @@ namespace TASK_1_POE_Proper
 {
     class Goblin : Enemy
     {
-        public Goblin(int i, int j, TileType ConstructType, char Symbol, int ConstructEnemyDamage, int ConstructHp) : base(i, j, ConstructType, 'G', 1, 10, 10)
+        public Goblin(int K, int L, TileType Type, char Symbol, int Damage, int Hp) : base(K, L, Type, 'G', 1, 10, 10)
         {
 
         }
 
-        public override Movement returnMove(Movement GoblinMove)
+        public override Movement returnMove(Movement goblinMovement)
         {
-            switch (GoblinMove)
+            switch (goblinMovement)
             {
                 case Movement.up:
                     {
                         x--;
-                        return GoblinMove;
+                        return goblinMovement;
                     }
 
                 case Movement.down:
                     {
                         x++;
-                        return GoblinMove;
+                        return goblinMovement;
                     }
 
                 case Movement.left:
                     {
                         y--;
-                        return GoblinMove;
+                        return goblinMovement;
                     }
 
                 case Movement.right:
                     {
                         y++;
-                        return GoblinMove;
+                        return goblinMovement;
                     }
             }
 
-            return (Movement)GoblinMove;
+            return (Movement)goblinMovement;
         }
 
         public override String ToString()

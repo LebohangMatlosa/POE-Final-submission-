@@ -31,16 +31,16 @@ namespace TASK_1_POE_Proper
         
         
         private static Random numbers = new Random();
-        private static Random rand = new Random();
-        private static int amountOfEnemies = rand.Next(1, 9);
+        private static Random random = new Random();
+        private static int amountOfEnemies = random.Next(1, 9);
         private static Random goblinAmount = new Random();
-        private static int goblinAmt = goblinAmount.Next(1, amountOfEnemies);
+        private static int amountOfGoblins = goblinAmount.Next(1, amountOfEnemies);
         private static Random mageAmount = new Random();
-        private static int mageAmt = mageAmount.Next(1, amountOfEnemies);
+        private static int amount = mageAmount.Next(1, amountOfEnemies);
         private static Random meleeWepaonAmount = new Random();
-        private static int meleeWeaponAmt = meleeWepaonAmount.Next(1, 5);
+        private static int AmountOfmeleeWeapon = meleeWepaonAmount.Next(1, 5);
         private static Random goldAmount = new Random();
-        private static int goldAmt = goblinAmount.Next(1, 5);
+        private static int AmountOfGold = goblinAmount.Next(1, 5);
         
         public static Hero player;
         Enemy enemy;
@@ -133,7 +133,7 @@ namespace TASK_1_POE_Proper
                 map[enemies[i].X(), enemies[i].Y()] = enemies[i];
             }
 
-            for (int i = 0; i < goldennAmt + 1; i++)
+            for (int i = 0; i < AmountOfGold + 1; i++)
             {
                 gold = (GOLD)Create(Tile.TileType.Gold);
                 map[gold.X(), gold.Y()] = gold;
@@ -190,7 +190,7 @@ namespace TASK_1_POE_Proper
 
             if (map[player.X(), player.Y()] is GOLD)
             {
-                goldCollected = goldCollected + 1;
+                goldColleted = goldColleted + 1;
             }
 
             map[player.X(), player.Y()] = player;
@@ -210,9 +210,9 @@ namespace TASK_1_POE_Proper
                         {
                             Enemy enemy = (Enemy)tile;
                             enemy.TakeDamage();
-                            enemy.IsDead();
+                            enemy.isDead();
 
-                            if (enemy.IsDead())
+                            if (enemy.isDead())
                             {
                                 map[x - 1, y] = new emptyTile(x - 1, y, Tile.TileType.Empty);
                             }
@@ -229,9 +229,9 @@ namespace TASK_1_POE_Proper
                             {
                                 Enemy enemy = (Enemy)tile;
                                 enemy.TakeDamage();
-                                enemy.IsDead();
+                                enemy.isDead();
 
-                                if (enemy.IsDead())
+                                if (enemy.isDead())
                                 {
                                     map[x + 1, y] = new emptyTile(x + 1, y, Tile.TileType.Empty);
                                 }
@@ -249,9 +249,9 @@ namespace TASK_1_POE_Proper
                             {
                                 Enemy enemy = (Enemy)tile;
                                 enemy.TakeDamage();
-                                enemy.IsDead();
+                                enemy.isDead();
 
-                                if (enemy.IsDead())
+                                if (enemy.isDead())
                                 {
                                     map[x, y - 1] = new emptyTile(x, y - 1, Tile.TileType.Empty);
                                 }
@@ -269,9 +269,9 @@ namespace TASK_1_POE_Proper
                             {
                                 Enemy enemy = (Enemy)tile;
                                 enemy.TakeDamage();
-                                enemy.IsDead();
+                                enemy.isDead();
 
-                                if (enemy.IsDead())
+                                if (enemy.isDead())
                                 {
                                     map[x, y + 1] = new emptyTile(x, y + 1, Tile.TileType.Empty);
                                 }

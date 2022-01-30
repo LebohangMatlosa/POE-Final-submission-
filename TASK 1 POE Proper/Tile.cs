@@ -22,8 +22,7 @@ namespace TASK_1_POE_Proper
             Empty,
             Barrier,
             attack,
-
-
+            Obstacle,
         }
 
 
