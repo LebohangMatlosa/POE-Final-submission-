@@ -6,63 +6,106 @@ using System.Threading.Tasks;
 
 namespace TASK_1_POE_Proper
 {
-    class Shop : Tile
+    class Shop 
     {
-        weapon[] weapons = new weapon[3];
-        
-        Random ob = new Random();
-        object buyer;
+        [NonSerialized]
+        public Random r = new Random();
+        private Character Buyer;
 
-        public Shop(weapon[] weapons, Random ob, object buyer)
+        private Weapon_Class[] stock;
+
+        public Weapon_Class[] Stock
         {
-            this.weapons = weapons;
-            this.ob = ob;
-            this.buyer = buyer;
-
-
+            get { return stock; }
+            set { stock = value; }
         }
-        private weapon RandomWeapon()
+
+        public Shop(Character buyer)
         {
-            if(dagger = true)
+            Buyer = buyer;
+            Stock = new Weapon_Class[3];
+            r = new Random();
+
+            for (int i = 0; i < 3; i++)
             {
-                return dagger;
-            }
-            else
-            {
-                return LongSword;
-            }
-            else
-            {
-                return Rifle
-            }
-            else
-            {
-                return LongBow
+                Stock[i] = RandomWeapon(r.Next(4));
             }
         }
-        public bool CanBuy(int num)
+
+        private Weapon_Class RandomWeapon(int RandWeap)
         {
-            if (gold> Dagger)
+            Weapon_Class Output = null;
+
+            switch (RandWeap)
             {
-                return true;
-            }
-        }
-        public void Buy(int num)
-        {
-            for(int x= 0; x > 10; x++)
-            {
-                for(int y= 0; y > 10; y++)
-                {
-                    
-                }
+                case 0:
+                    Output = new RangedWeapons(RangedWeapons.RANGEDWEAPONS.Rifle);
+                    break;
+                case 1:
+                    Output = new RangedWeapons(RangedWeapons.RANGEDWEAPONS.LongBow);
+                    break;
+                case 2:
+                    Output = new MeleeWeaponClass(MeleeWeaponClass.MELEEWEAPONS.Dagger);
+                    break;
+                case 3:
+                    Output = new MeleeWeaponClass(MeleeWeaponClass.MELEEWEAPONS.LongSword);
+                    break;
             }
 
+            return Output;
         }
-        public string DisplayWeapon(int num)
-        {
-            Console.WriteLine("Buy weaponType" gold);
-            
-          
-        }
+
+
+         /*public bool CanBuy(int num)
+         {
+             bool Output = false;
+             Weapon_Class Purchase;
+             Purchase = Stock[num];
+
+             if (Purchase.COST > Buyer.GoldPurse)
+             {
+                 Output = false;
+             }
+             else
+             {
+                 Output = true;
+             }
+             return Output;
+         }
+
+         public void Buy(int num)
+         {
+             Buyer. = Buyer.GoldPurse - Stock[num].COST;
+             Buyer.Pickup(,Stock[num]);
+             r = new Random();
+             Stock[num] = RandomWeapon(r.Next(4));
+         }
+
+         public string DisplayWeapon(int num)
+         {
+             string Output = "";
+
+             switch (Stock[num].Symbol)
+             {
+                 case 'D':
+                     Output = "Buy Dagger for 3 Gold";
+                     break;
+
+                 case 'B':
+                     Output = "Buy LongBow for 6 Gold";
+                     break;
+
+                 case 'S':
+                     Output = "Buy LongSword for 5 Gold";
+                     break;
+
+                 case 'R':
+                     Output = "Buy Rifle for 7 Gold";
+                     break;
+             }
+             return Output;
+
+
+         }*/ 
     }
 }

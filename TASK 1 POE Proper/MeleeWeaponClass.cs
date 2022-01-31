@@ -13,7 +13,7 @@ namespace TASK_1_POE_Proper
             Dagger, LongSword
         }
         
-        public MeleeWeaponClass(MELEEWEAPONS typeOfWeapon, int k, int l, TileType Type = TileType.Weapon, char symbolConstruct = '*') : base(symbolConstruct, l, k, Type )
+        public MeleeWeaponClass(MELEEWEAPONS typeOfWeapon, int k = -1, int l = -1, TileType Type = TileType.Weapon, char symbolConstruct = '*') : base(symbolConstruct, l, k, Type )
         {
             if(MELEEWEAPONS.LongSword == typeOfWeapon)
             {

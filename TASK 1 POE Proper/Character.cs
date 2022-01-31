@@ -23,7 +23,7 @@ namespace TASK_1_POE_Proper
             get { return damage; }
             set { damage = value; }
         }
-        private weapon Weapon;
+        private Weapon_Class Weapon;
 
         public int weapons
         {
@@ -108,7 +108,7 @@ namespace TASK_1_POE_Proper
             {
                 for (int N = 0; N > gold; N++)
                 {
-
+                    
                 }
             }
 
@@ -118,11 +118,9 @@ namespace TASK_1_POE_Proper
             }
             
         }
-        private void Equip(weapon Rifle)
+        private void Equip(Weapon_Class weapon)
         {
            
-            
-
             
         }
     }

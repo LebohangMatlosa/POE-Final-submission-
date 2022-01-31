@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace TASK_1_POE_Proper
 {
-    abstract class RangedWeapons : Weapon_Class
+    class RangedWeapons : Weapon_Class
     {
-        public enum RangeWeapons
+        public enum RANGEDWEAPONS
         {
             Rifle, LongBow, 
         }
-        public RangedWeapons(RangeWeapons WeaponType, int i = -1, int j = -1, TileType ConstructType = TileType.Weapon, char ConstructSymbol = '.') : base(ConstructSymbol, i, j, ConstructType)
+        public RangedWeapons(RANGEDWEAPONS WeaponType, int i = -1, int j = -1, TileType ConstructType = TileType.Weapon, char ConstructSymbol = '.') : base(ConstructSymbol, i, j, ConstructType)
         {
-            if (RangeWeapons.LongBow == WeaponType)
+            if (RANGEDWEAPONS.LongBow == WeaponType)
             {
                 base.symbol = 'L';
                 base.DURABILITY = 4;
@@ -22,7 +22,7 @@ namespace TASK_1_POE_Proper
                 base.DAMAGE = 4;
                 base.COST = 6;
             }
-            if (RangeWeapons.Rifle == WeaponType)
+            if (RANGEDWEAPONS.Rifle == WeaponType)
             {
                 base.symbol = 'R';
                 base.DAMAGE = 5;

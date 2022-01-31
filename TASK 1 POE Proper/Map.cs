@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TASK_1_POE_Proper
 {
-    class Map 
+    class MAP 
     {
         private int WidthMin;
         private int WidthMax;
@@ -18,7 +18,7 @@ namespace TASK_1_POE_Proper
         private int heightMin;
         private int AmountOfEnemy;
 
-        public static int goldColleted = 0;
+        public static int goldCollected = 0;
         public static bool canMove = true;
 
 
@@ -47,7 +47,7 @@ namespace TASK_1_POE_Proper
 
         
 
-        public Map(int widthMin, int widthMax, int minHeight, int maxHeight, int EnemiesAmount)
+        public MAP(int widthMin, int widthMax, int minHeight, int maxHeight, int EnemiesAmount)
         {
             AmountOfEnemy = EnemiesAmount;
             heightMin = minHeight;
@@ -190,7 +190,7 @@ namespace TASK_1_POE_Proper
 
             if (map[player.X(), player.Y()] is GOLD)
             {
-                goldColleted = goldColleted + 1;
+                goldCollected = goldCollected + 1;
             }
 
             map[player.X(), player.Y()] = player;

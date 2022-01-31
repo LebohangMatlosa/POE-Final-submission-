@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TASK_1_POE_Proper
-{   
+{
     abstract class Tile
     {
 
         protected int x;
         protected int y;
-        protected char symbols; 
+        protected char symbols;
         public enum TileType
         {
             Character,
@@ -28,7 +28,7 @@ namespace TASK_1_POE_Proper
 
         public int X()
         {
-            return x;   
+            return x;
         }
 
         public Tile(int K, int L, TileType Type, char symbol)
@@ -43,7 +43,7 @@ namespace TASK_1_POE_Proper
             return y;
         }
         private int enemies;
-        
+
         public int ENEMIES
         {
             get { return enemies; }
@@ -55,6 +55,12 @@ namespace TASK_1_POE_Proper
             get { return enumtype; }
             set { Enumtype = value; }
         }
+
+        public char getSymbols
+            {
+                get{ return symbols; }
+                set{ symbols = value; }
+            }
         
     }
 }

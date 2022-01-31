@@ -8,13 +8,13 @@ namespace TASK_1_POE_Proper
 {
     class Mage:Enemy
     {
-        public Mage(int MageX, int MageY) : base (MageX, MageY)
+        public Mage(int MageX, int MageY, TileType mage, char symbol = 'M', int mageDamage= 5,int mageHp= 5,int maxHP =5) : base (MageX, MageY,mage,symbol,mageDamage,mageHp,maxHP)
         {
-            int MageHp = 5;
-            int MageDamage = 5;
+            int MageHp = mageHp;
+            int MageDamage= mageDamage;
         }
 
-        public override int ReturnMove()
+        public override Movement returnMove(Movement e)
         {
             throw new NotImplementedException();
         }

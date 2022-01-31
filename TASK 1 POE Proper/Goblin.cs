@@ -8,6 +8,7 @@ namespace TASK_1_POE_Proper
 {
     class Goblin : Enemy
     {
+        [NonSerialized] public Random r;
         public Goblin(int K, int L, TileType Type, char Symbol, int Damage, int Hp) : base(K, L, Type, 'G', 1, 10, 10)
         {
 

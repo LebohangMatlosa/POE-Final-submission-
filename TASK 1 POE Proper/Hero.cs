@@ -55,7 +55,7 @@ namespace TASK_1_POE_Proper
             {
                 case Attacking.up:
                     {
-                        if (Map.map[x - 1, y] is Enemy)
+                        if (MAP.map[x - 1, y] is Enemy)
                         {
                             System.Windows.Forms.MessageBox.Show("Hit!");
                         }
@@ -64,7 +64,7 @@ namespace TASK_1_POE_Proper
 
                 case Attacking.down:
                     {
-                        if (Map.map[x + 1, y] is Enemy)
+                        if (MAP.map[x + 1, y] is Enemy)
                         {
                             MessageBox.Show("Hit");
                         }
@@ -73,7 +73,7 @@ namespace TASK_1_POE_Proper
 
                 case Attacking.left:
                     {
-                        if (Map.map[x, y - 1] is Enemy)
+                        if (MAP.map[x, y - 1] is Enemy)
                         {
                             MessageBox.Show("Hit"); 
                         }
@@ -82,7 +82,7 @@ namespace TASK_1_POE_Proper
 
                 case Attacking.right:
                     {
-                        if (Map.map[x, y + 1] is Enemy)
+                        if (MAP.map[x, y + 1] is Enemy)
                         {
 
                         }

@@ -12,18 +12,23 @@ namespace TASK_1_POE_Proper
 
         private int EnemiesDamage;
         int hploss = 2;
-
+        char Symbols;
         public Enemy(int x, int y, TileType Type, char Symbol, int EnemyDamage, int Hp, int MaxHP) : base(x, y, Type, Symbol)
         {
             damage = EnemyDamage;
             hp = Hp;
             maxHp = MaxHP;
-
+            Symbols = Symbol;
         }
         public int EnemyDamage
         {
             get { return EnemiesDamage; }
             set { EnemiesDamage = value; }
+        }
+        public char SYMBOL
+        {
+            get { return Symbols; }
+            set { Symbols = value; }
         }
         public void TakeDamage()
         {
