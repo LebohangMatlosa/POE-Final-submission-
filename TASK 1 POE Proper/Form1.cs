@@ -138,5 +138,10 @@ namespace TASK_1_POE_Proper
             engine.GetMap().HeroAttack(Character.Attacking.down);
             lblMap.Text = engine.ToString();
         }
+
+        private void groupBox1_Enter_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

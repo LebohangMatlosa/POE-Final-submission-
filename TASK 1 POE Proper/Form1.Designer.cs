@@ -82,6 +82,7 @@ namespace TASK_1_POE_Proper
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Player Stats";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter_1);
             // 
             // goldAmount_Label
             // 
@@ -134,9 +135,9 @@ namespace TASK_1_POE_Proper
             this.playerWeapon_Label.Location = new System.Drawing.Point(299, 79);
             this.playerWeapon_Label.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.playerWeapon_Label.Name = "playerWeapon_Label";
-            this.playerWeapon_Label.Size = new System.Drawing.Size(120, 19);
+            this.playerWeapon_Label.Size = new System.Drawing.Size(51, 19);
             this.playerWeapon_Label.TabIndex = 7;
-            this.playerWeapon_Label.Text = "Barehanded";
+            this.playerWeapon_Label.Text = "None";
             // 
             // playerHP_Label
             // 
