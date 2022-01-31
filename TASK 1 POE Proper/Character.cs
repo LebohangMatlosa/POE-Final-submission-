@@ -87,10 +87,6 @@ namespace TASK_1_POE_Proper
             }
             return true;
         }
-        private int DistanceTo(Character enemy)
-        {
-            return 10;
-        }
         public void Move(Movement e)
         {
 
@@ -108,18 +104,26 @@ namespace TASK_1_POE_Proper
         public abstract override string ToString();
         public void Pickup(Item i, int gold)
         {
-            for(int p = 0; p <gold; p++)
+            for (int p = 0; p < gold; p++)
             {
-                for(int N = 0; N> gold; N++)
+                for (int N = 0; N > gold; N++)
                 {
 
                 }
             }
 
-            for(int u = 0; u < gold;)
+            for (int u = 0; u < gold;)
             {
 
             }
+            
+        }
+        private void Equip(weapon Rifle)
+        {
+           
+            
+
+            
         }
     }
 }

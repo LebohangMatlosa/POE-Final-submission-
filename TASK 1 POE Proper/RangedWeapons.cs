@@ -8,44 +8,35 @@ namespace TASK_1_POE_Proper
 {
     abstract class RangedWeapons : Weapon_Class
     {
-        private int RANGE;
-
-        protected RangedWeapons(string LongBow, string Rifle, int rANGE, int range)
+        public enum RangeWeapons
         {
-            RANGE = rANGE;
-            this.range = range;
-            Random weapon = new Random();
-            weapon.Next(LongBow, Rifle);
-            while (Rifle)
+            Rifle, LongBow, 
+        }
+        public RangedWeapons(RangeWeapons WeaponType, int i = -1, int j = -1, TileType ConstructType = TileType.Weapon, char ConstructSymbol = '.') : base(ConstructSymbol, i, j, ConstructType)
+        {
+            if (RangeWeapons.LongBow == WeaponType)
             {
-                DAMAGE = 3;
-                COST = 3;
-                DURABILITY = 10;
+                base.symbol = 'L';
+                base.DURABILITY = 4;
+                base.RANGE = 2;
+                base.DAMAGE = 4;
+                base.COST = 6;
             }
-            else
+            if (RangeWeapons.Rifle == WeaponType)
             {
-                DAMAGE = 4;
-                COST = 5;
-                DURABILITY = 6;
+                base.symbol = 'R';
+                base.DAMAGE = 5;
+                base.COST = 7;
+                base.RANGE = 3;
+                base.DURABILITY = 10;
+
             }
+           
+            base.RANGE = 1;
+            x = i;
+            y = j;
         }
-
-        public int range
-        {
-            get { return RANGE; }
-            set { RANGE = value; }
-        }
-        public enum rangedweapons
-        {
-            LongBow,
-            Rifle
-        }
-        public void 
-        public override int Range()
-        {
-            return base.Range = RANGE;
-        } 
-
+       
     }
     
 }
