@@ -33,7 +33,7 @@ namespace TASK_1_POE_Proper
             return false;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             string text = "";
 
@@ -69,7 +69,7 @@ namespace TASK_1_POE_Proper
             return Output;
         }
 
-         public bool Load()
+         /*public bool Load()
          {
              bool Output = false;
              Random r = new Random();
@@ -110,7 +110,7 @@ namespace TASK_1_POE_Proper
                  Output = false;
              }
              return Output;
-         }
+         }*/
     }
 }
 

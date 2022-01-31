@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TASK_1_POE_Proper
 {
-    abstract class Leader : Enemy
+     class Leader : Enemy
     {
         [NonSerialized] public Random r;
         private Tile LeaderEnemies;
@@ -21,7 +21,7 @@ namespace TASK_1_POE_Proper
 
         }
 
-        public virtual Movement Move(Movement leadersMovement)
+        public override Movement returnMove(Movement leadersMovement)
         {
             switch (leadersMovement)
             {
@@ -58,8 +58,6 @@ namespace TASK_1_POE_Proper
             return "Leader" + " at [" + x.ToString() + y.ToString() + "]" + Damage;
         }
 
-
-
-
+       
     }
 }

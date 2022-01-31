@@ -7,9 +7,19 @@ C:\Users\yound\Documents\GitHub\GADE6121-POE-Task-1\TASK 1 POE Proper\obj\Debug\
 C:\Users\yound\Documents\GitHub\GADE6121-POE-Task-1\TASK 1 POE Proper\obj\Debug\net5.0-windows\TASK 1 POE Proper.csproj.CoreCompileInputs.cache
 C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\obj\Debug\net5.0-windows\TASK 1 POE Proper.csproj.AssemblyReference.cache
 C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\obj\Debug\net5.0-windows\TASK_1_POE_Proper.Form1.resources
-C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\obj\Debug\net5.0-windows\TASK_1_POE_Proper.weapon.resources
 C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\obj\Debug\net5.0-windows\TASK 1 POE Proper.csproj.GenerateResource.cache
 C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\obj\Debug\net5.0-windows\TASK 1 POE Proper.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\obj\Debug\net5.0-windows\TASK 1 POE Proper.AssemblyInfoInputs.cache
 C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\obj\Debug\net5.0-windows\TASK 1 POE Proper.AssemblyInfo.cs
 C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\obj\Debug\net5.0-windows\TASK 1 POE Proper.csproj.CoreCompileInputs.cache
+C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\bin\Debug\net5.0-windows\TASK 1 POE Proper.exe
+C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\bin\Debug\net5.0-windows\TASK 1 POE Proper.deps.json
+C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\bin\Debug\net5.0-windows\TASK 1 POE Proper.runtimeconfig.json
+C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\bin\Debug\net5.0-windows\TASK 1 POE Proper.runtimeconfig.dev.json
+C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\bin\Debug\net5.0-windows\TASK 1 POE Proper.dll
+C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\bin\Debug\net5.0-windows\ref\TASK 1 POE Proper.dll
+C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\bin\Debug\net5.0-windows\TASK 1 POE Proper.pdb
+C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\obj\Debug\net5.0-windows\TASK 1 POE Proper.dll
+C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\obj\Debug\net5.0-windows\ref\TASK 1 POE Proper.dll
+C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\obj\Debug\net5.0-windows\TASK 1 POE Proper.pdb
+C:\Users\yound\Documents\GitHub\POE-Final-submission-\TASK 1 POE Proper\obj\Debug\net5.0-windows\TASK 1 POE Proper.genruntimeconfig.cache

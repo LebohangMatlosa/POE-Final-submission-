@@ -47,7 +47,7 @@ namespace TASK_1_POE_Proper
 
         public Character(int posX, int posY, TileType Type, char Symbol) : base(posX, posY, Type, Symbol)
         {
-            Symbol = symbol;
+            symbol = Symbol;
         }
 
 

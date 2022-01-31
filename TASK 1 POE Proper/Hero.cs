@@ -27,13 +27,13 @@ namespace TASK_1_POE_Proper
                         return move;
                     }
 
-                case Movement.down:
+                case Movement.left:
                     {
                         y--;
                         return move;
                     }
 
-                case Movement.left:
+                case Movement.down:
                     {
                         x++;
                         return move;

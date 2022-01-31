@@ -8,20 +8,21 @@ namespace TASK_1_POE_Proper
 {
     class Mage:Enemy
     {
-        public Mage(int MageX, int MageY, TileType mage, char symbol = 'M', int mageDamage= 5,int mageHp= 5,int maxHP =5) : base (MageX, MageY,mage,symbol,mageDamage,mageHp,maxHP)
+        public Mage(int i, int j, TileType ConstructType, char Symbol, int ConstructEnemyDamage, int ConstructHp) : base(i, j, ConstructType, 'M', 5, 5, 5)
         {
-            int MageHp = mageHp;
-            int MageDamage= mageDamage;
+
         }
 
-        public override Movement returnMove(Movement e)
+        public override Movement returnMove(Movement MageMove)
         {
-            throw new NotImplementedException();
+            MageMove = Movement.stationary;
+
+            return MageMove;
         }
 
-        public override bool CheckRange(Character target)
+        public override String ToString()
         {
-            return base.CheckRange(target);
+            return "Mage" + " at [" + x.ToString() + y.ToString() + "]" + Damage;
         }
     }
 }

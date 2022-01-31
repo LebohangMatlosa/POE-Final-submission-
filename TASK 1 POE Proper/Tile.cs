@@ -35,7 +35,7 @@ namespace TASK_1_POE_Proper
         {
             x = K;
             y = L;
-            symbol = symbols;
+            symbols = symbol;
             Enumtype = Type;
         }
         public int Y()

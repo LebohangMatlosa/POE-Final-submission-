@@ -6,97 +6,95 @@ using System.Threading.Tasks;
 
 namespace TASK_1_POE_Proper
 {
-    class MAP 
+    class MAP
     {
-        private int WidthMin;
-        private int WidthMax;
-        private int mapHeight;
-        private int mapWidth;
-        public int borderHeight;
-        public int borderWidth;
-        private int heightMax;
-        private int heightMin;
-        private int AmountOfEnemy;
-
-        public static int goldCollected = 0;
-        public static bool canMove = true;
-
-
-        public Hero characterPlayer;
+        public static Tile[,] map;
+        public Hero playerCharacter;
         public Enemy[] enemies;
         public GOLD gold;
         public MeleeWeaponClass meleeWeapon;
-        public static Tile[,] map;
 
-        
-        
+        private int mapHeight;
+        private int mapWidth;
+        private int MinHeight;
+        private int MaxHeight;
+        private int MinWidth;
+        private int MaxWidth;
+        public int borderHeight;
+        public int borderWidth;
+        private int enemyAmount;
+
         private static Random numbers = new Random();
-        private static Random random = new Random();
-        private static int amountOfEnemies = random.Next(1, 9);
+        private static Random rand = new Random();
+        private static int enemyAmt = rand.Next(1, 9);
         private static Random goblinAmount = new Random();
-        private static int amountOfGoblins = goblinAmount.Next(1, amountOfEnemies);
+        private static int goblinAmt = goblinAmount.Next(1, enemyAmt);
         private static Random mageAmount = new Random();
-        private static int amount = mageAmount.Next(1, amountOfEnemies);
+        private static int mageAmt = mageAmount.Next(1, enemyAmt);
         private static Random meleeWepaonAmount = new Random();
-        private static int AmountOfmeleeWeapon = meleeWepaonAmount.Next(1, 5);
+        private static int meleeWeaponAmt = meleeWepaonAmount.Next(1, 5);
         private static Random goldAmount = new Random();
-        private static int AmountOfGold = goblinAmount.Next(1, 5);
-        
+        private static int goldennAmt = goblinAmount.Next(1, 5);
+        public static int goldCollected = 0;
+        public static bool canMove = true;
         public static Hero player;
         Enemy enemy;
 
-        
+        ////////THANK YOU FOR VISTING THE PILLAR OF VARIABLES\\\\\\\\\
 
-        public MAP(int widthMin, int widthMax, int minHeight, int maxHeight, int EnemiesAmount)
+        public MAP(int minHeight, int maxHeight, int minWidth, int maxWidth, int amtEnemy)
         {
-            AmountOfEnemy = EnemiesAmount;
-            heightMin = minHeight;
-            heightMax = maxHeight;
-            WidthMin = widthMin;
-            WidthMax = widthMax;
-            
+            MinHeight = minHeight;
+            MaxHeight = maxHeight;
+            MinWidth = minWidth;
+            MaxWidth = maxWidth;
+            enemyAmount = amtEnemy;
+
+            mapHeight = numbers.Next(minHeight, maxHeight);
+            mapWidth = numbers.Next(minWidth, maxWidth);
 
             borderHeight = mapHeight + 2;
             borderWidth = mapWidth + 2;
 
-            mapHeight = numbers.Next(minHeight, maxHeight);
-            mapWidth = numbers.Next(widthMin, widthMax);
-
-            enemies = new Enemy[AmountOfEnemy];
             map = new Tile[borderWidth, borderHeight];
 
-            MapMaker();
+            enemies = new Enemy[enemyAmount];
+
+            MakeMap();
         }
 
         private Tile Create(Tile.TileType type, Type EnemyType = null)
         {
-            int posX = numbers.Next(1, mapWidth);
-            int posY = numbers.Next(1, mapHeight);
+            int positionX = numbers.Next(1, mapWidth);
+            int positionY = numbers.Next(1, mapHeight);
 
-            if (posX > mapHeight || posY > mapWidth)
+            if (positionX > mapHeight || positionY > mapWidth)
             {
                 return Create(type, EnemyType);
             }
 
             if (type == Tile.TileType.Enemy)
             {
-                return (Enemy)Activator.CreateInstance(EnemyType, posX, posY, type, EnemyType == typeof(Goblin) ? 'G' : 'M', 1, 10);
+                return (Enemy)Activator.CreateInstance(EnemyType, positionX, positionY, type, EnemyType == typeof(Goblin) ? 'G' : 'M', 1, 10);
             }
             else if (type == Tile.TileType.Hero)
             {
-                return new Hero(posX, posY, type, 'H', 20, 20);
+                return new Hero(positionX, positionY, type, 'H', 20, 20);
             }
             else if (type == Tile.TileType.Gold)
             {
-                return new GOLD(posX, posY);
+                return new GOLD(positionX, positionY);
             }
-            
+            /*else if (type == Tile.TileType.Weapon)
+            {
+                return new MeleeWeapon(positionX, positionY)
+            }*/
 
-            return new Hero(posX, posY, Tile.TileType.Hero, 'H', 20, 20);
+            return new Hero(positionX, positionY, Tile.TileType.Hero, 'H', 20, 20);
 
         }
 
-        private void MapMaker()
+        private void MakeMap()
         {
             for (int x = 0; x < borderWidth; x++)
             {
@@ -114,13 +112,13 @@ namespace TASK_1_POE_Proper
             player = (Hero)Create(Tile.TileType.Hero);
             map[player.X(), player.Y()] = player;
 
-            for (int i = 0; i < AmountOfEnemy; i++)
+            for (int i = 0; i < enemyAmount; i++)
             {
                 enemies[i] = (Mage)Create(Tile.TileType.Enemy, typeof(Mage));
                 map[enemies[i].X(), enemies[i].Y()] = enemies[i];
             }
 
-            for (int i = 0; i < AmountOfEnemy; i++)
+            for (int i = 0; i < enemyAmount; i++)
             {
                 enemies[i] = (Goblin)Create(Tile.TileType.Enemy, typeof(Goblin));
                 map[enemies[i].X(), enemies[i].Y()] = enemies[i];
@@ -133,7 +131,7 @@ namespace TASK_1_POE_Proper
                 map[enemies[i].X(), enemies[i].Y()] = enemies[i];
             }
 
-            for (int i = 0; i < AmountOfGold + 1; i++)
+            for (int i = 0; i < goldennAmt + 1; i++)
             {
                 gold = (GOLD)Create(Tile.TileType.Gold);
                 map[gold.X(), gold.Y()] = gold;
@@ -284,7 +282,7 @@ namespace TASK_1_POE_Proper
 
 
 
-            // public void UpdateVision()  //Updates the vision array for each character 
+            // public void UpdateVision()  
             //{
 
             //}
@@ -292,7 +290,7 @@ namespace TASK_1_POE_Proper
 
         public void MoveEnemy(Character.Movement move)
         {
-            for (int i = 0; i < AmountOfEnemy; i++)
+            for (int i = 0; i < enemyAmount; i++)
             {
 
 
@@ -339,7 +337,4 @@ namespace TASK_1_POE_Proper
             }
         }
     }
-      
-
-    
 }

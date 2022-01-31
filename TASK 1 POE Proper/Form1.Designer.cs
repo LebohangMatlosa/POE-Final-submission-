@@ -218,11 +218,11 @@ namespace TASK_1_POE_Proper
             // lblMap
             // 
             this.lblMap.AutoSize = true;
-            this.lblMap.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblMap.Font = new System.Drawing.Font("Courier New", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblMap.Location = new System.Drawing.Point(112, 19);
             this.lblMap.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblMap.Name = "lblMap";
-            this.lblMap.Size = new System.Drawing.Size(46, 22);
+            this.lblMap.Size = new System.Drawing.Size(54, 25);
             this.lblMap.TabIndex = 10;
             this.lblMap.Text = "MAP";
             // 
